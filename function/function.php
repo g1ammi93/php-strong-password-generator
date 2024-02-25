@@ -23,9 +23,18 @@ if(isset($_GET['numbercharacter']) && !empty($_GET['numbercharacter'])) {
     $password = randomPassword($length);
     $message = 'La Password è stata generata con successo: ' . $password;
     $alert_class= 'alert-success';
-} else {
+    // Avvio la Sessione
+    session_start();
+    $_SESSION['password'] = $password;
+    // Reindirizzo l'utente
+    header('Location: success.php');
+    die;
+} else if((isset($_GET['numbercharacter']))) {
     $message = 'Compila i campi correttamente!';
     $alert_class= 'alert-danger';
+} else {
+    $message = '';
+    $alert_class= '';
 }
 
 
