@@ -1,34 +1,7 @@
+
 <?php
-
-// Funzioni
-
-function randomPassword($length){
-$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-$string = "";
-$i = 0;
-while($i<$length){
-    $character= substr($characters,rand(0,strlen($characters)-1),1);
-    $string .= $character;
-    $i++;
-}
-
-return $string;
-}
-
-
-// Verifico che l'utente abbiamo messo i dati in pagina
-if(isset($_GET['numbercharacter']) && !empty($_GET['numbercharacter'])) {
-    $length = intval($_GET['numbercharacter']);
-
-    $password = randomPassword($length);
-    $message = 'La Password è stata generata con successo: ' . $password;
-} else {
-    $message = 'Compila i campi correttamente!';
-}
-
-
+require 'function/function.php'
 ?>
-
 
 
 <!DOCTYPE html>
@@ -51,7 +24,7 @@ if(isset($_GET['numbercharacter']) && !empty($_GET['numbercharacter'])) {
 <!-- Metto l'alert -->
 <h1 class="text-center">Password Generator</h1>
 
-<div class="alert alert-success mt-5" role="alert">
+<div class="alert <?= $alert_class ?> mt-5" role="alert">
    <?php echo $message; ?>
 </div>
 <!-- Form per Generare la Password -->
